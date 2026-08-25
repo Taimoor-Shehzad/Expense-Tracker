@@ -1,16 +1,17 @@
 import { useAuth, useSignIn } from "@clerk/expo";
+import { Link } from "expo-router";
 import { useState } from "react";
 import {
   Button,
-  Pressable,
   StyleSheet,
   Text,
   TextInput,
+  TouchableOpacity,
   View,
 } from "react-native";
 
 export default function SignInScreen() {
-  const { isLoaded, isSignedIn, signOut } = useAuth();
+  const { isLoaded } = useAuth();
   const { signIn } = useSignIn();
 
   const [emailAddress, setEmailAddress] = useState("");
@@ -40,17 +41,6 @@ export default function SignInScreen() {
     return null;
   }
 
-  if (isSignedIn) {
-    return (
-      <View style={styles.container}>
-        <Text>You&apos;re signed in</Text>
-        <Pressable onPress={() => signOut()}>
-          <Text>Signout</Text>
-        </Pressable>
-      </View>
-    );
-  }
-
   return (
     <View style={styles.container}>
       <Text>Sign in</Text>
@@ -70,6 +60,15 @@ export default function SignInScreen() {
         onChangeText={setPassword}
       />
       <Button title="Sign in" onPress={handleSignIn} />
+      <View>
+        <Text>Don&apos;t have an account?</Text>
+
+        <Link href="/sign-up" asChild>
+          <TouchableOpacity>
+            <Text>Sign up</Text>
+          </TouchableOpacity>
+        </Link>
+      </View>
     </View>
   );
 }

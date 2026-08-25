@@ -3,15 +3,15 @@ import { Link } from "expo-router";
 import { useState } from "react";
 import {
   Button,
-  Pressable,
   StyleSheet,
   Text,
   TextInput,
+  TouchableOpacity,
   View,
 } from "react-native";
 
 export default function MainScreen() {
-  const { isLoaded, isSignedIn, signOut } = useAuth();
+  const { isLoaded } = useAuth();
   const { signUp } = useSignUp();
 
   const [emailAddress, setEmailAddress] = useState("");
@@ -53,17 +53,6 @@ export default function MainScreen() {
     return null;
   }
 
-  if (isSignedIn) {
-    return (
-      <View style={styles.container}>
-        <Text>You&apos;re signed in..</Text>
-        <Pressable onPress={() => signOut()}>
-          <Text>Signout</Text>
-        </Pressable>
-      </View>
-    );
-  }
-
   if (isVerifying) {
     return (
       <View style={styles.container}>
@@ -103,6 +92,14 @@ export default function MainScreen() {
       <Link href="/sign-in">
         <Text>Sign-in</Text>
       </Link>
+      <View>
+        <Text>Already have an account?</Text>
+        <Link href="/sign-in" asChild>
+          <TouchableOpacity>
+            <Text>Sign in</Text>
+          </TouchableOpacity>
+        </Link>
+      </View>
     </View>
   );
 }

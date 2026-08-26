@@ -2,34 +2,41 @@ import { useAuth, useSignUp } from "@clerk/expo";
 import { Link } from "expo-router";
 import { useState } from "react";
 import {
+  Image,
+  Alert,
   Button,
-  StyleSheet,
+  Pressable,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
+import createAuthStyles from "@/assets/styles/auth.styles";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { Ionicons } from "@expo/vector-icons";
+import { COLORS } from "@/constants/colors";
 
 export default function MainScreen() {
   const { isLoaded } = useAuth();
   const { signUp } = useSignUp();
+  const styles = createAuthStyles();
 
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
   const [code, setCode] = useState("");
   const [isVerifying, setIsVerifying] = useState(false);
+  const [err, setErr] = useState("");
 
   const handleSignUp = async () => {
     const { error } = await signUp.password({ emailAddress, password });
     if (error) {
-      // Handle the error in your app.
-      // See https://clerk.com/docs/guides/development/custom-flows/error-handling
+      setErr("Invalid Email/Password");
       return;
     }
 
     const { error: sendError } = await signUp.verifications.sendEmailCode();
     if (sendError) {
-      // Handle the error in your app.
+      setErr("Verification Failed");
       return;
     }
 
@@ -39,13 +46,14 @@ export default function MainScreen() {
   const handleVerify = async () => {
     const { error } = await signUp.verifications.verifyEmailCode({ code });
     if (error) {
-      // Handle the error in your app.
+      setErr("Incorrect Verification Code");
       return;
     }
 
     const { error: finalizeError } = await signUp.finalize();
     if (finalizeError) {
-      // Handle the error in your app.
+      setErr("An Error Occured Please Try Again");
+      return;
     }
   };
 
@@ -55,67 +63,76 @@ export default function MainScreen() {
 
   if (isVerifying) {
     return (
-      <View style={styles.container}>
-        <TextInput
-          style={styles.input}
-          value={code}
-          placeholder="Enter your verification code"
-          onChangeText={setCode}
-          keyboardType="numeric"
-        />
-        <Button title="Verify" onPress={handleVerify} />
-      </View>
+      <>
+        <View style={styles.mainContainer}>
+          <Text style={styles.verificationTitle}>Verification</Text>
+          <TextInput
+            style={styles.verificationInput}
+            value={code}
+            placeholder="Enter your verification code"
+            onChangeText={setCode}
+            keyboardType="numeric"
+          />
+          <Pressable style={styles.submitButton} onPress={() => handleVerify()}>
+            <Text style={styles.buttonText}>Verify Email</Text>
+          </Pressable>
+        </View>
+      </>
     );
   }
 
   return (
-    <View style={styles.container}>
-      <Text>Sign up</Text>
-      <TextInput
-        style={styles.input}
-        autoCapitalize="none"
-        value={emailAddress}
-        placeholder="Enter email"
-        onChangeText={setEmailAddress}
-        keyboardType="email-address"
-      />
-      <TextInput
-        style={styles.input}
-        value={password}
-        placeholder="Enter password"
-        secureTextEntry={true}
-        onChangeText={setPassword}
-      />
-      <Button title="Sign up" onPress={handleSignUp} />
-      {/* Required for sign-up flows on Expo web. Clerk skips the browser CAPTCHA on iOS and Android */}
-      <View nativeID="clerk-captcha" />
-      <Link href="/sign-in">
-        <Text>Sign-in</Text>
-      </Link>
-      <View>
-        <Text>Already have an account?</Text>
-        <Link href="/sign-in" asChild>
-          <TouchableOpacity>
-            <Text>Sign in</Text>
-          </TouchableOpacity>
-        </Link>
+    <KeyboardAwareScrollView
+      style={{ flex: 1 }}
+      contentContainerStyle={{ flexGrow: 1 }}
+      enableOnAndroid={true}
+      enableAutomaticScroll={true}
+    >
+      <View style={styles.mainContainer}>
+        <Image
+          style={styles.image}
+          source={require("@/assets/images/revenue-i2.png")}
+        />
+        <Text style={styles.title}>Sign up</Text>
+
+        {err ? (
+          <View style={styles.errorBox}>
+            <Ionicons name="alert-circle" size={20} color={COLORS.expense} />
+            <Text style={styles.errorText}>{err}</Text>
+            <TouchableOpacity onPress={() => setErr("")}>
+              <Ionicons name="close" size={20} color={COLORS.textLight} />
+            </TouchableOpacity>
+          </View>
+        ) : null}
+
+        <TextInput
+          style={styles.input}
+          autoCapitalize="none"
+          value={emailAddress}
+          placeholder="Enter email address"
+          onChangeText={setEmailAddress}
+          keyboardType="email-address"
+        />
+        <TextInput
+          style={styles.input}
+          value={password}
+          placeholder="Enter password (15 characters or more)"
+          secureTextEntry={true}
+          onChangeText={setPassword}
+        />
+        <Pressable style={styles.submitButton} onPress={() => handleSignUp()}>
+          <Text style={styles.buttonText}>Sign Up</Text>
+        </Pressable>
+        <View nativeID="clerk-captcha" />
+        <View style={styles.footerContainer}>
+          <Text>Already have an account?</Text>
+          <Link href="/sign-in" asChild>
+            <Pressable>
+              <Text style={styles.linkText}>Sign in</Text>
+            </Pressable>
+          </Link>
+        </View>
       </View>
-    </View>
+    </KeyboardAwareScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-    gap: 12,
-    justifyContent: "center",
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: "#ccc",
-    borderRadius: 8,
-    padding: 12,
-    fontSize: 16,
-  },
-});

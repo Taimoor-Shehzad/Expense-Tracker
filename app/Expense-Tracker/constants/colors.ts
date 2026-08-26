@@ -1,5 +1,19 @@
 // constants/colors.js
-const coffeeTheme = {
+
+interface ColorType {
+  primary: string;
+  background: string;
+  text: string;
+  border: string;
+  white: string;
+  textLight: string;
+  expense: string;
+  income: string;
+  card: string;
+  shadow: string;
+}
+
+const coffeeTheme: ColorType = {
   primary: "#8B593E",
   background: "#FFF8F3",
   text: "#4A3428",
@@ -12,7 +26,7 @@ const coffeeTheme = {
   shadow: "#000000",
 };
 
-const forestTheme = {
+const forestTheme: ColorType = {
   primary: "#2E7D32",
   background: "#E8F5E9",
   text: "#1B5E20",
@@ -25,7 +39,7 @@ const forestTheme = {
   shadow: "#000000",
 };
 
-const purpleTheme = {
+const purpleTheme: ColorType = {
   primary: "#6A1B9A",
   background: "#F3E5F5",
   text: "#4A148C",
@@ -38,7 +52,7 @@ const purpleTheme = {
   shadow: "#000000",
 };
 
-const oceanTheme = {
+const oceanTheme: ColorType = {
   primary: "#0277BD",
   background: "#E1F5FE",
   text: "#01579B",
@@ -59,4 +73,4 @@ export const THEMES = {
 };
 
 // 👇 change this to switch theme
-export const COLORS = THEMES.forest;
+export const COLORS = THEMES.coffee;

@@ -34,8 +34,18 @@ res.send("Its Workingg");
 })
 
 
-initDB().then(()=>{
-  app.listen(PORT, ()=>{
-console.log("server is running on",PORT)
-})
-})
+initDB();
+
+app.get("/", (req, res) => {
+  res.send("Its Workingg");
+});
+
+// Run local server listener only during development
+if (process.env.NODE_ENV !== "production") {
+  app.listen(PORT, () => {
+    console.log("Server is running on port", PORT);
+  });
+}
+
+// Required for Vercel serverless functions
+export default app;

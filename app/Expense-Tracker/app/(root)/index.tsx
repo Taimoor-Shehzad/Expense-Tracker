@@ -13,9 +13,11 @@ const Index = () => {
   useEffect(() => {
     loadData();
   }, [loadData]);
-  console.log(transactions);
 
-  console.log(user?.id);
+  useEffect(() => {
+    console.log(summary);
+  }, [summary]);
+
   return (
     <View>
       <Text>You MADE IT!!!!🥳🥳</Text>

@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import { Alert } from "react-native";
 
-const API_URL = "http://localhost:5001/api";
+const API_URL = "https://expense-tracker-mu-six-57.vercel.app/api";
 export const useTransactions = (userId: string | undefined) => {
   const [transactions, setTransactions] = useState([]);
   const [summary, setSummary] = useState({
@@ -23,7 +23,7 @@ export const useTransactions = (userId: string | undefined) => {
 
   const fetchSummary = useCallback(async () => {
     try {
-      const response = await fetch(`${API_URL}/summary/${userId}`);
+      const response = await fetch(`${API_URL}/transactions/summary/${userId}`);
       const data = await response.json();
       setSummary(data);
     } catch (error) {

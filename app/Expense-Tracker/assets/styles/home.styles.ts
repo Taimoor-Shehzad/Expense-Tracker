@@ -43,6 +43,7 @@ const createHomeStyles = () => {
       padding: 11,
       borderRadius: 24,
       gap: 4,
+      elevation: 3,
     },
 
     exitButton: {
@@ -57,13 +58,6 @@ const createHomeStyles = () => {
       flex: 1,
       flexDirection: "row",
       alignItems: "center",
-    },
-    headerLogo: {
-      width: 75,
-      height: 75,
-    },
-    welcomeContainer: {
-      flex: 1,
     },
     welcomeText: {
       fontSize: 14,
@@ -85,80 +79,151 @@ const createHomeStyles = () => {
       fontWeight: "bold",
       color: COLORS.text,
     },
-    addButtn: {
-      backgroundColor: COLORS.primary,
-      paddingHorizontal: 16,
-      paddingVertical: 10,
-      borderRadius: 24,
-      flexDirection: "row",
-      alignItems: "center",
-      shadowColor: "#000",
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.1,
-      shadowRadius: 4,
+    // addButtn: {
+    //   backgroundColor: COLORS.primary,
+    //   paddingHorizontal: 16,
+    //   paddingVertical: 10,
+    //   borderRadius: 24,
+    //   flexDirection: "row",
+    //   alignItems: "center",
+    //   shadowColor: "#000",
+    //   shadowOffset: { width: 0, height: 2 },
+    //   shadowOpacity: 0.1,
+    //   shadowRadius: 4,
+    //   elevation: 3,
+    // },
+    // logoutButton: {
+    //   padding: 10,
+    //   borderRadius: 20,
+    //   backgroundColor: COLORS.card,
+    //   shadowColor: "#000",
+    //   shadowOffset: { width: 0, height: 1 },
+    //   shadowOpacity: 0.05,
+    //   shadowRadius: 2,
+    //   elevation: 1,
+    // },
+
+    summaryContainer: {
+      backgroundColor: COLORS.card,
+      borderRadius: 14,
+      padding: 16,
+      // shadowColor: COLORS.shadow,
+      // shadowOffset: {
+      //   width: 0,
+      //   height: 2,
+      // },
+      // shadowOpacity: 0.1,
+      // shadowRadius: 3,
       elevation: 3,
     },
-    addButtonText: {
-      color: COLORS.white,
-      fontWeight: "600",
-      marginLeft: 4,
+
+    totalBalanceContainer: {
+      marginBottom: 10,
     },
-    logoutButton: {
-      padding: 10,
-      borderRadius: 20,
-      backgroundColor: COLORS.card,
-      shadowColor: "#000",
-      shadowOffset: { width: 0, height: 1 },
-      shadowOpacity: 0.05,
-      shadowRadius: 2,
-      elevation: 1,
-    },
-    balanceCard: {
-      backgroundColor: COLORS.card,
-      borderRadius: 20,
-      padding: 20,
-      marginBottom: 20,
-      shadowColor: COLORS.shadow,
-      shadowOffset: {
-        width: 0,
-        height: 2,
-      },
-      shadowOpacity: 0.1,
-      shadowRadius: 3,
-      elevation: 3,
-    },
-    balanceTitle: {
-      fontSize: 16,
+
+    totalText: {
       color: COLORS.textLight,
-      marginBottom: 8,
+      fontSize: 20,
     },
-    balanceAmount: {
-      fontSize: 32,
-      fontWeight: "bold",
+    balanceText: {
       color: COLORS.text,
-      marginBottom: 20,
+      fontWeight: "bold",
+      fontSize: 26,
     },
-    balanceStats: {
+    incomeExpenseContainer: {
       flexDirection: "row",
       justifyContent: "space-between",
-    },
-    balanceStatItem: {
-      flex: 1,
-      alignItems: "center",
-    },
-    statDivider: {
-      borderRightWidth: 1,
-      borderColor: COLORS.border,
-    },
-    balanceStatLabel: {
-      fontSize: 14,
-      color: COLORS.textLight,
       marginBottom: 4,
     },
-    balanceStatAmount: {
-      fontSize: 18,
-      fontWeight: "600",
+
+    incomeContainer: {
+      width: 100,
     },
+
+    expensesContainer: {
+      width: 110,
+
+      borderLeftColor: COLORS.border,
+      borderLeftWidth: 1,
+      justifyContent: "center",
+      alignItems: "center",
+    },
+
+    incomeText: {
+      paddingLeft: 8,
+      textAlign: "center",
+      color: COLORS.textLight,
+      fontSize: 14,
+    },
+
+    incomeNumber: {
+      textAlign: "center",
+      color: COLORS.income,
+      fontWeight: "bold",
+      fontSize: 18,
+    },
+
+    expenseText: {
+      textAlign: "center",
+      color: COLORS.textLight,
+      paddingLeft: 8,
+      fontSize: 14,
+    },
+
+    expenseNumber: {
+      textAlign: "center",
+      color: COLORS.expense,
+      fontWeight: "bold",
+      fontSize: 18,
+    },
+
+    // balanceCard: {
+    //   backgroundColor: COLORS.card,
+    //   borderRadius: 20,
+    //   padding: 20,
+    //   marginBottom: 20,
+    //   shadowColor: COLORS.shadow,
+    //   shadowOffset: {
+    //     width: 0,
+    //     height: 2,
+    //   },
+    //   shadowOpacity: 0.1,
+    //   shadowRadius: 3,
+    //   elevation: 3,
+    // },
+    // balanceTitle: {
+    //   fontSize: 16,
+    //   color: COLORS.textLight,
+    //   marginBottom: 8,
+    // },
+    // balanceAmount: {
+    //   fontSize: 32,
+    //   fontWeight: "bold",
+    //   color: COLORS.text,
+    //   marginBottom: 20,
+    // },
+    // balanceStats: {
+    //   flexDirection: "row",
+    //   justifyContent: "space-between",
+    // },
+    // balanceStatItem: {
+    //   flex: 1,
+    //   alignItems: "center",
+    // },
+    // statDivider: {
+    //   borderRightWidth: 1,
+    //   borderColor: COLORS.border,
+    // },
+    // balanceStatLabel: {
+    //   fontSize: 14,
+    //   color: COLORS.textLight,
+    //   marginBottom: 4,
+    // },
+    // balanceStatAmount: {
+    //   fontSize: 18,
+    //   fontWeight: "600",
+    // },
+
     sectionTitle: {
       fontSize: 18,
       fontWeight: "600",

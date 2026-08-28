@@ -1,14 +1,20 @@
-import { View, Text, TouchableOpacity, Image, Pressable } from "react-native";
+import { View, Text, Image, Pressable } from "react-native";
 import { useAuth, useUser } from "@clerk/expo";
 import React, { useEffect } from "react";
-import { Button } from "@react-navigation/elements";
 import { useTransactions } from "@/hooks/useTransaction";
 import createHomeStyles from "@/assets/styles/home.styles";
 import { Ionicons } from "@expo/vector-icons";
+import SummaryConatainer from "@/components/SummaryConatainer";
 
 const Index = () => {
   const { user } = useUser();
   const styles = createHomeStyles();
+  const { signOut } = useAuth();
+  const { summary, loadData } = useTransactions(user?.id);
+
+  useEffect(() => {
+    loadData();
+  }, [loadData]);
 
   return (
     <View style={styles.container}>
@@ -35,6 +41,12 @@ const Index = () => {
             </Pressable>
           </View>
         </View>
+
+        <SummaryConatainer styles={styles} summary={summary} />
+
+        <Pressable onPress={() => signOut()}>
+          <Text>Sign Out</Text>
+        </Pressable>
       </View>
     </View>
   );

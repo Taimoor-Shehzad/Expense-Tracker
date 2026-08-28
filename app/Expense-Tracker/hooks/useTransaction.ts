@@ -25,7 +25,11 @@ export const useTransactions = (userId: string | undefined) => {
     try {
       const response = await fetch(`${API_URL}/transactions/summary/${userId}`);
       const data = await response.json();
-      setSummary(data);
+      setSummary({
+        balance: Number(data.totalBalance ?? 0),
+        income: Number(data.totalIncome ?? 0),
+        expenses: Number(data.totalExpenses ?? 0),
+      });
     } catch (error) {
       console.log("Error fetching summary", error);
     }

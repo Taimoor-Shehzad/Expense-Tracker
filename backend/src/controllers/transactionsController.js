@@ -43,7 +43,7 @@ export const postTransaction = async (req,res)=>{
 export const deleteTransactionByUserId = async (req,res)=>{
   const {userId} = req.params;
   try {
-    const result=await sql ` DELETE FROM transactions WHERE user_id=${userId} RETURNING *`
+    const result=await sql ` DELETE FROM transactions WHERE id=${userId} RETURNING *`
     if(result.length === 0){
       return res.status(400).json({message: "Transactions NOt Found"})
     }

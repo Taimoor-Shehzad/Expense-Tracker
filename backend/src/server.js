@@ -6,6 +6,7 @@ import transactionRoute from "./routes/transactionRoute.js";
 
 dotenv.config();
 const app=express();
+app.set("trust proxy", 1);
 const PORT = process.env.PORT || 5001;
 
 app.use(rateLimiter)

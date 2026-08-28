@@ -2,21 +2,18 @@ import { View, Text } from "react-native";
 import React from "react";
 import createHomeStyles from "@/assets/styles/home.styles";
 
-type Summary = {
+type PLACEHOLDER_SUMMARY = {
   balance: number;
   income: number;
   expenses: number;
 };
 
 type SummaryContainerProps = {
-  summary: Summary;
+  summary: PLACEHOLDER_SUMMARY;
   styles: ReturnType<typeof createHomeStyles>;
 };
 
-const SummaryConatainer = ({
-  summary,
-  styles,
-}: SummaryContainerProps) => {
+const SummaryConatainer = ({ summary, styles }: SummaryContainerProps) => {
   return (
     <View style={styles.summaryContainer}>
       <View style={styles.totalBalanceContainer}>

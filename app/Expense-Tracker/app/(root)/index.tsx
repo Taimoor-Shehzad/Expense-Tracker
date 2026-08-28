@@ -38,7 +38,7 @@ const Index = () => {
               <Ionicons name="add" size={18} color={"#fff"} />
               <Text style={{ color: "white", fontWeight: "bold" }}>Add</Text>
             </Pressable>
-            <Pressable style={styles.exitButton}>
+            <Pressable style={styles.exitButton} onPress={() => signOut()}>
               <Ionicons name="exit-outline" size={19} color={"#000"} />
             </Pressable>
           </View>
@@ -69,10 +69,6 @@ const Index = () => {
           contentContainerStyle={styles.transactionsListContent}
           keyExtractor={(item) => item.id.toString()}
         />
-
-        <Pressable onPress={() => signOut()}>
-          <Text>Sign Out</Text>
-        </Pressable>
       </View>
     </View>
   );

@@ -14,30 +14,24 @@ const createHomeStyles = () => {
       flex: 1,
       padding: 20,
       paddingBottom: 0,
-      justifyContent: "center",
-      alignContent: "center",
+      justifyContent: "flex-start",
     },
 
     header: {
+      height: 55,
       flexDirection: "row",
       justifyContent: "center",
       alignItems: "center",
       gap: 6,
+      marginBottom: 25,
+      marginTop: 26,
     },
 
     logoImg: {
       width: 75,
+      height: 75,
       resizeMode: "contain",
     },
-
-    // head: {
-    //   flexDirection: "row",
-    //   justifyContent: "space-between",
-    //   alignItems: "center",
-    //   marginBottom: 20,
-    //   paddingHorizontal: 0,
-    //   paddingVertical: 12,
-    // },
 
     addButton: {
       flexDirection: "row",
@@ -84,41 +78,10 @@ const createHomeStyles = () => {
       fontWeight: "bold",
       color: COLORS.text,
     },
-    // addButtn: {
-    //   backgroundColor: COLORS.primary,
-    //   paddingHorizontal: 16,
-    //   paddingVertical: 10,
-    //   borderRadius: 24,
-    //   flexDirection: "row",
-    //   alignItems: "center",
-    //   shadowColor: "#000",
-    //   shadowOffset: { width: 0, height: 2 },
-    //   shadowOpacity: 0.1,
-    //   shadowRadius: 4,
-    //   elevation: 3,
-    // },
-    // logoutButton: {
-    //   padding: 10,
-    //   borderRadius: 20,
-    //   backgroundColor: COLORS.card,
-    //   shadowColor: "#000",
-    //   shadowOffset: { width: 0, height: 1 },
-    //   shadowOpacity: 0.05,
-    //   shadowRadius: 2,
-    //   elevation: 1,
-    // },
-
     summaryContainer: {
       backgroundColor: COLORS.card,
       borderRadius: 14,
       padding: 16,
-      // shadowColor: COLORS.shadow,
-      // shadowOffset: {
-      //   width: 0,
-      //   height: 2,
-      // },
-      // shadowOpacity: 0.1,
-      // shadowRadius: 3,
       elevation: 3,
     },
 
@@ -182,58 +145,12 @@ const createHomeStyles = () => {
       fontSize: 18,
     },
 
-    // balanceCard: {
-    //   backgroundColor: COLORS.card,
-    //   borderRadius: 20,
-    //   padding: 20,
-    //   marginBottom: 20,
-    //   shadowColor: COLORS.shadow,
-    //   shadowOffset: {
-    //     width: 0,
-    //     height: 2,
-    //   },
-    //   shadowOpacity: 0.1,
-    //   shadowRadius: 3,
-    //   elevation: 3,
-    // },
-    // balanceTitle: {
-    //   fontSize: 16,
-    //   color: COLORS.textLight,
-    //   marginBottom: 8,
-    // },
-    // balanceAmount: {
-    //   fontSize: 32,
-    //   fontWeight: "bold",
-    //   color: COLORS.text,
-    //   marginBottom: 20,
-    // },
-    // balanceStats: {
-    //   flexDirection: "row",
-    //   justifyContent: "space-between",
-    // },
-    // balanceStatItem: {
-    //   flex: 1,
-    //   alignItems: "center",
-    // },
-    // statDivider: {
-    //   borderRightWidth: 1,
-    //   borderColor: COLORS.border,
-    // },
-    // balanceStatLabel: {
-    //   fontSize: 14,
-    //   color: COLORS.textLight,
-    //   marginBottom: 4,
-    // },
-    // balanceStatAmount: {
-    //   fontSize: 18,
-    //   fontWeight: "600",
-    // },
-
     sectionTitle: {
       fontSize: 18,
       fontWeight: "600",
       color: COLORS.text,
       marginBottom: 15,
+      marginTop: 20,
     },
 
     itemCard: {
@@ -241,11 +158,65 @@ const createHomeStyles = () => {
       justifyContent: "space-between",
       alignItems: "center",
       backgroundColor: COLORS.white,
-      elevation: 3,
+      elevation: 2,
       borderRadius: 12,
-      padding: 15,
-      width: "100%",
-      height: 150,
+      paddingVertical: 15,
+      paddingHorizontal: 12,
+      margin: 6,
+    },
+
+    itemCardLeft: {
+      flexDirection: "row",
+      alignItems: "center",
+      gap: 10,
+    },
+
+    iconContainer: {
+      padding: 10,
+      backgroundColor: COLORS.background,
+      borderRadius: "50%",
+    },
+
+    transactionTextContainer: {
+      justifyContent: "center",
+    },
+
+    transactionTitleText: {
+      color: COLORS.text,
+      fontWeight: "bold",
+      fontSize: 14,
+    },
+    transactionCategoryText: {
+      color: COLORS.textLight,
+      fontSize: 14,
+    },
+    itemCardRight: {
+      flexDirection: "row",
+      alignItems: "center",
+      gap: 12,
+    },
+
+    transactionAmountText: {
+      justifyContent: "center",
+      alignItems: "flex-end",
+    },
+
+    transactionAmount: {
+      fontWeight: "bold",
+      fontSize: 14,
+    },
+
+    transactionDate: {
+      color: COLORS.textLight,
+      fontSize: 12,
+    },
+
+    transactionDeleteIconContainer: {
+      justifyContent: "center",
+      alignContent: "center",
+      borderLeftColor: COLORS.border,
+      borderLeftWidth: 1,
+      padding: 7,
     },
 
     transactionCard: {
@@ -294,15 +265,15 @@ const createHomeStyles = () => {
     transactionRight: {
       alignItems: "flex-end",
     },
-    transactionAmount: {
-      fontSize: 16,
-      fontWeight: "600",
-      marginBottom: 4,
-    },
-    transactionDate: {
-      fontSize: 12,
-      color: COLORS.textLight,
-    },
+    // transactionAmount: {
+    //   fontSize: 16,
+    //   fontWeight: "600",
+    //   marginBottom: 4,
+    // },
+    // transactionDate: {
+    //   fontSize: 12,
+    //   color: COLORS.textLight,
+    // },
     deleteButton: {
       padding: 15,
       borderLeftWidth: 1,
@@ -373,9 +344,10 @@ const createHomeStyles = () => {
     },
     transactionsList: {
       flex: 1,
-      marginHorizontal: 20,
+      minHeight: 200,
     },
     transactionsListContent: {
+      flexGrow: 1,
       paddingBottom: 20,
     },
   });

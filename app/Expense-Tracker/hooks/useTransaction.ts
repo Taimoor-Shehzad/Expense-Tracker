@@ -2,8 +2,18 @@ import { useCallback, useState } from "react";
 import { Alert } from "react-native";
 
 const API_URL = "https://expense-tracker-mu-six-57.vercel.app/api";
+
+export type Transaction = {
+  id: number;
+  user_id: string;
+  title: string;
+  amount: string | number;
+  category: string;
+  created_at: string;
+};
+
 export const useTransactions = (userId: string | undefined) => {
-  const [transactions, setTransactions] = useState([]);
+  const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [summary, setSummary] = useState({
     balance: 0,
     income: 0,
@@ -12,16 +22,21 @@ export const useTransactions = (userId: string | undefined) => {
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchTransactions = useCallback(async () => {
+    if (!userId) return;
+
     try {
       const response = await fetch(`${API_URL}/transactions/${userId}`);
+      if (!response.ok) throw new Error("Failed to fetch transactions");
       const data = await response.json();
-      setTransactions(data);
+      setTransactions(Array.isArray(data) ? data : []);
     } catch (error) {
       console.log("Error fetching transaction", error);
     }
   }, [userId]);
 
   const fetchSummary = useCallback(async () => {
+    if (!userId) return;
+
     try {
       const response = await fetch(`${API_URL}/transactions/summary/${userId}`);
       const data = await response.json();

@@ -7,10 +7,15 @@ const createHomeStyles = () => {
     container: {
       flex: 1,
       backgroundColor: COLORS.background,
+      justifyContent: "center",
+      alignContent: "center",
     },
     content: {
+      flex: 1,
       padding: 20,
       paddingBottom: 0,
+      justifyContent: "center",
+      alignContent: "center",
     },
 
     header: {
@@ -230,6 +235,19 @@ const createHomeStyles = () => {
       color: COLORS.text,
       marginBottom: 15,
     },
+
+    itemCard: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
+      backgroundColor: COLORS.white,
+      elevation: 3,
+      borderRadius: 12,
+      padding: 15,
+      width: "100%",
+      height: 150,
+    },
+
     transactionCard: {
       backgroundColor: COLORS.card,
       borderRadius: 12,

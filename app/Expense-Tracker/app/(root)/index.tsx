@@ -1,16 +1,18 @@
-import { View, Text, Image, Pressable } from "react-native";
+import { View, Text, Image, Pressable, FlatList } from "react-native";
 import { useAuth, useUser } from "@clerk/expo";
 import React, { useEffect } from "react";
 import { useTransactions } from "@/hooks/useTransaction";
 import createHomeStyles from "@/assets/styles/home.styles";
 import { Ionicons } from "@expo/vector-icons";
 import SummaryConatainer from "@/components/SummaryConatainer";
+import TransactionItem from "@/components/TransactionItem";
 
 const Index = () => {
   const { user } = useUser();
   const styles = createHomeStyles();
   const { signOut } = useAuth();
-  const { summary, loadData } = useTransactions(user?.id);
+  const { summary, loadData, transactions, deleteTransaction } =
+    useTransactions(user?.id);
 
   useEffect(() => {
     loadData();
@@ -43,6 +45,30 @@ const Index = () => {
         </View>
 
         <SummaryConatainer styles={styles} summary={summary} />
+
+        <Text style={styles.sectionTitle}>Recent Transactions</Text>
+
+        <FlatList
+          data={transactions}
+          renderItem={({ item }) => (
+            <TransactionItem
+              transaction={item}
+              deleteTransaction={deleteTransaction}
+              styles={styles}
+            />
+          )}
+          ListEmptyComponent={
+            <View style={styles.emptyState}>
+              <Text style={styles.emptyStateTitle}>No transactions yet</Text>
+              <Text style={styles.emptyStateText}>
+                Add a transaction to see it here.
+              </Text>
+            </View>
+          }
+          style={styles.transactionsList}
+          contentContainerStyle={styles.transactionsListContent}
+          keyExtractor={(item) => item.id.toString()}
+        />
 
         <Pressable onPress={() => signOut()}>
           <Text>Sign Out</Text>

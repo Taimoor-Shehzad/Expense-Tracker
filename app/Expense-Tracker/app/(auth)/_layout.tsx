@@ -14,7 +14,6 @@ export default function AuthLayout() {
     );
   }
 
-  // Redirect signed-in users away from ALL screens in (auth)
   if (isSignedIn) {
     return <Redirect href="../(root)" />;
   }

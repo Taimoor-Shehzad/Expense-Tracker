@@ -15,6 +15,7 @@ import { Ionicons } from "@expo/vector-icons";
 import SummaryConatainer from "@/components/SummaryConatainer";
 import TransactionItem from "@/components/TransactionItem";
 import { router } from "expo-router";
+import NoTransactionsFound from "@/components/NoTransactionFound";
 
 const Index = () => {
   const { user, isLoaded } = useUser();
@@ -84,14 +85,7 @@ const Index = () => {
               styles={styles}
             />
           )}
-          ListEmptyComponent={
-            <View style={styles.emptyState}>
-              <Text style={styles.emptyStateTitle}>No transactions yet</Text>
-              <Text style={styles.emptyStateText}>
-                Add a transaction to see it here.
-              </Text>
-            </View>
-          }
+          ListEmptyComponent={<NoTransactionsFound />}
           style={styles.transactionsList}
           contentContainerStyle={styles.transactionsListContent}
           keyExtractor={(item) => item.id.toString()}

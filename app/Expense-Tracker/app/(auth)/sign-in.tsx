@@ -25,7 +25,6 @@ export default function SignInScreen() {
   const [err, setErr] = useState("");
 
   const handleSignIn = async () => {
-    // 1. Authenticate using factor-specific password method
     const { error } = await signIn.password({
       identifier: emailAddress,
       password,
@@ -36,7 +35,6 @@ export default function SignInScreen() {
       return;
     }
 
-    // 2. Finalize and activate the session
     const { error: finalizeError } = await signIn.finalize();
     if (finalizeError) {
       setErr("Sign In Failed");

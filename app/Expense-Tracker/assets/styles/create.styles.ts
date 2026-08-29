@@ -1,4 +1,3 @@
-// styles/create.styles.js
 import { StyleSheet } from "react-native";
 import { COLORS } from "../../constants/colors";
 
@@ -95,7 +94,6 @@ const createCreateStyles = () => {
       width: "100%",
       fontWeight: "bold",
     },
-
     categorySection: {},
 
     categorySectionTitleContainer: {
@@ -121,64 +119,6 @@ const createCreateStyles = () => {
       paddingHorizontal: 14,
     },
 
-    headerTitle: {
-      fontSize: 18,
-      fontWeight: "600",
-      color: COLORS.text,
-    },
-    backButton: {
-      padding: 5,
-    },
-    saveButtonContainer: {
-      flexDirection: "row",
-      alignItems: "center",
-      gap: 4,
-    },
-    saveButtonDisabled: {
-      opacity: 0.5,
-    },
-    saveButton: {
-      fontSize: 16,
-      color: COLORS.primary,
-      fontWeight: "600",
-    },
-    card: {
-      backgroundColor: COLORS.card,
-      margin: 16,
-      borderRadius: 16,
-      padding: 16,
-      shadowColor: "#000",
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.1,
-      shadowRadius: 4,
-      elevation: 3,
-    },
-    typeButton: {
-      flex: 1,
-      flexDirection: "row",
-      alignItems: "center",
-      justifyContent: "center",
-      paddingVertical: 12,
-      borderRadius: 25,
-      borderWidth: 1,
-      borderColor: COLORS.border,
-    },
-    typeButtonActive: {
-      backgroundColor: COLORS.primary,
-      borderColor: COLORS.primary,
-    },
-    typeIcon: {
-      marginRight: 8,
-    },
-    typeButtonText: {
-      color: COLORS.text,
-      fontSize: 16,
-      fontWeight: "500",
-    },
-    typeButtonTextActive: {
-      color: COLORS.white,
-    },
-
     sectionTitle: {
       fontSize: 18,
       fontWeight: "600",
@@ -189,6 +129,7 @@ const createCreateStyles = () => {
       alignItems: "center",
     },
   });
+
   return styles;
 };
 

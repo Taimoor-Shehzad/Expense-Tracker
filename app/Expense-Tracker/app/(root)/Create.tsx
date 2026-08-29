@@ -94,24 +94,52 @@ const Create = () => {
           <Ionicons name="arrow-back-outline" size={26} />
         </Pressable>
         <Text style={styles.titleText}>New Transaction</Text>
-        <Pressable>
+        <Pressable onPress={() => createTransaction()}>
           <Ionicons name="checkmark" size={26} />
         </Pressable>
       </View>
       <View style={styles.createTransactionContainer}>
         <View style={styles.typeSelectorContainer}>
-          <View style={styles.typeSelector}>
+          <Pressable
+            style={[
+              styles.typeSelector,
+              isExpense && { backgroundColor: COLORS.primary },
+            ]}
+            onPress={() => {
+              setIsExpense(true);
+            }}
+          >
             <Ionicons
               name="arrow-down-circle"
               size={22}
-              color={COLORS.primary}
+              color={isExpense ? COLORS.white : COLORS.expense}
             />
-            <Text style={styles.typeText}>Expense</Text>
-          </View>
-          <View style={styles.typeSelector}>
-            <Ionicons name="arrow-up-circle" size={22} color={COLORS.income} />
-            <Text style={styles.typeText}>Income</Text>
-          </View>
+            <Text
+              style={[styles.typeText, isExpense && { color: COLORS.white }]}
+            >
+              Expense
+            </Text>
+          </Pressable>
+          <Pressable
+            style={[
+              styles.typeSelector,
+              !isExpense && { backgroundColor: COLORS.primary },
+            ]}
+            onPress={() => {
+              setIsExpense(false);
+            }}
+          >
+            <Ionicons
+              name="arrow-up-circle"
+              size={22}
+              color={!isExpense ? COLORS.white : COLORS.income}
+            />
+            <Text
+              style={[styles.typeText, !isExpense && { color: COLORS.white }]}
+            >
+              Income
+            </Text>
+          </Pressable>
         </View>
         <View style={styles.amountContainer}>
           <View style={styles.iconContainer}>
@@ -122,6 +150,8 @@ const Create = () => {
             placeholder="0.00"
             keyboardType="numeric"
             placeholderTextColor={COLORS.textLight}
+            value={amount}
+            onChangeText={setAmount}
           />
         </View>
         <View style={styles.titleInputConatiner}>
@@ -136,6 +166,8 @@ const Create = () => {
             style={styles.titleInput}
             placeholder="Transaction Title"
             placeholderTextColor={COLORS.textLight}
+            value={title}
+            onChangeText={setTitle}
           />
         </View>
         <View style={styles.categorySection}>
@@ -146,13 +178,33 @@ const Create = () => {
             <Text style={styles.sectionTitle}>Category</Text>
           </View>
           <View style={styles.categoriesWrapper}>
-            {CATEGORIES.map((category) => {
+            {CATEGORIES.map((item) => {
               return (
-                <Pressable style={styles.categoryContainer} key={category.id}>
+                <Pressable
+                  style={[
+                    styles.categoryContainer,
+                    category === item.name && {
+                      backgroundColor: COLORS.primary,
+                    },
+                  ]}
+                  key={item.id}
+                  onPress={() => {
+                    setCategory(item.name);
+                  }}
+                >
                   <View>
-                    <Ionicons name={category.icon} />
+                    <Ionicons
+                      name={item.icon}
+                      color={
+                        category === item.name ? COLORS.white : COLORS.text
+                      }
+                    />
                   </View>
-                  <Text>{category.name}</Text>
+                  <Text
+                    style={[category === item.name && { color: COLORS.white }]}
+                  >
+                    {item.name}
+                  </Text>
                 </Pressable>
               );
             })}

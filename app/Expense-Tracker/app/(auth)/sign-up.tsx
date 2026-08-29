@@ -3,8 +3,6 @@ import { Link } from "expo-router";
 import { useState } from "react";
 import {
   Image,
-  Alert,
-  Button,
   Pressable,
   Text,
   TextInput,

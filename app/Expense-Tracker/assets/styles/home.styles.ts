@@ -1,4 +1,3 @@
-// styles/home.styles.js
 import { StyleSheet } from "react-native";
 import { COLORS } from "@/constants/colors";
 
@@ -10,13 +9,13 @@ const createHomeStyles = () => {
       justifyContent: "center",
       alignContent: "center",
     },
+
     content: {
       flex: 1,
       padding: 20,
       paddingBottom: 0,
       justifyContent: "flex-start",
     },
-
     header: {
       height: 55,
       flexDirection: "row",
@@ -58,26 +57,25 @@ const createHomeStyles = () => {
       flexDirection: "row",
       alignItems: "center",
     },
+
     welcomeText: {
       fontSize: 14,
       color: COLORS.textLight,
       marginBottom: 2,
     },
+
     usernameText: {
       fontSize: 16,
       fontWeight: "600",
       color: COLORS.text,
     },
+
     headerRight: {
       flexDirection: "row",
       alignItems: "center",
       gap: 12,
     },
-    headerTitle: {
-      fontSize: 28,
-      fontWeight: "bold",
-      color: COLORS.text,
-    },
+
     summaryContainer: {
       backgroundColor: COLORS.card,
       borderRadius: 14,
@@ -93,11 +91,13 @@ const createHomeStyles = () => {
       color: COLORS.textLight,
       fontSize: 20,
     },
+
     balanceText: {
       color: COLORS.text,
       fontWeight: "bold",
       fontSize: 26,
     },
+
     incomeExpenseContainer: {
       flexDirection: "row",
       justifyContent: "space-between",
@@ -110,7 +110,6 @@ const createHomeStyles = () => {
 
     expensesContainer: {
       width: 110,
-
       borderLeftColor: COLORS.border,
       borderLeftWidth: 1,
       justifyContent: "center",
@@ -168,7 +167,8 @@ const createHomeStyles = () => {
     itemCardLeft: {
       flexDirection: "row",
       alignItems: "center",
-      gap: 10,
+      gap: 8,
+      width: 160,
     },
 
     iconContainer: {
@@ -186,10 +186,12 @@ const createHomeStyles = () => {
       fontWeight: "bold",
       fontSize: 14,
     },
+
     transactionCategoryText: {
       color: COLORS.textLight,
       fontSize: 14,
     },
+
     itemCardRight: {
       flexDirection: "row",
       alignItems: "center",
@@ -219,75 +221,6 @@ const createHomeStyles = () => {
       padding: 7,
     },
 
-    transactionCard: {
-      backgroundColor: COLORS.card,
-      borderRadius: 12,
-      marginBottom: 10,
-      flexDirection: "row",
-      alignItems: "center",
-      shadowColor: COLORS.shadow,
-      shadowOffset: {
-        width: 0,
-        height: 1,
-      },
-      shadowOpacity: 0.1,
-      shadowRadius: 2,
-      elevation: 2,
-    },
-    transactionContent: {
-      flex: 1,
-      flexDirection: "row",
-      padding: 15,
-      alignItems: "center",
-    },
-    categoryIconContainer: {
-      width: 40,
-      height: 40,
-      borderRadius: 20,
-      backgroundColor: "#F5F5F5",
-      justifyContent: "center",
-      alignItems: "center",
-      marginRight: 12,
-    },
-    transactionLeft: {
-      flex: 1,
-    },
-    transactionTitle: {
-      fontSize: 16,
-      fontWeight: "500",
-      color: COLORS.text,
-      marginBottom: 4,
-    },
-    transactionCategory: {
-      fontSize: 14,
-      color: COLORS.textLight,
-    },
-    transactionRight: {
-      alignItems: "flex-end",
-    },
-    // transactionAmount: {
-    //   fontSize: 16,
-    //   fontWeight: "600",
-    //   marginBottom: 4,
-    // },
-    // transactionDate: {
-    //   fontSize: 12,
-    //   color: COLORS.textLight,
-    // },
-    deleteButton: {
-      padding: 15,
-      borderLeftWidth: 1,
-      borderLeftColor: COLORS.border,
-    },
-    transactionsContainer: {
-      marginBottom: 20,
-    },
-    loadingContainer: {
-      flex: 1,
-      justifyContent: "center",
-      alignItems: "center",
-      backgroundColor: COLORS.background,
-    },
     emptyState: {
       backgroundColor: COLORS.card,
       borderRadius: 16,
@@ -301,15 +234,18 @@ const createHomeStyles = () => {
       shadowRadius: 2,
       elevation: 2,
     },
+
     emptyStateIcon: {
       marginBottom: 16,
     },
+
     emptyStateTitle: {
       fontSize: 18,
       fontWeight: "600",
       color: COLORS.text,
       marginBottom: 8,
     },
+
     emptyStateText: {
       color: COLORS.textLight,
       fontSize: 14,
@@ -317,6 +253,7 @@ const createHomeStyles = () => {
       marginBottom: 20,
       lineHeight: 20,
     },
+
     emptyStateButton: {
       backgroundColor: COLORS.primary,
       flexDirection: "row",
@@ -330,22 +267,18 @@ const createHomeStyles = () => {
       shadowRadius: 3,
       elevation: 2,
     },
+
     emptyStateButtonText: {
       color: COLORS.white,
       fontWeight: "600",
       marginLeft: 6,
     },
-    transactionsHeaderContainer: {
-      flexDirection: "row",
-      justifyContent: "space-between",
-      alignItems: "center",
-      marginBottom: 10,
-      paddingBottom: 5,
-    },
+
     transactionsList: {
       flex: 1,
       minHeight: 200,
     },
+
     transactionsListContent: {
       flexGrow: 1,
       paddingBottom: 20,

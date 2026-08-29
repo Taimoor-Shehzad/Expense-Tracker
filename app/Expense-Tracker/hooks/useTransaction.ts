@@ -1,7 +1,6 @@
 import { useCallback, useState } from "react";
 import { Alert } from "react-native";
-
-const API_URL = "https://expense-tracker-mu-six-57.vercel.app/api";
+import { API_URL } from "../constants/api";
 
 export type Transaction = {
   id: number;

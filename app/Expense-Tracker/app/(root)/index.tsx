@@ -1,22 +1,46 @@
-import { View, Text, Image, Pressable, FlatList } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  Pressable,
+  FlatList,
+  RefreshControl,
+  ActivityIndicator,
+} from "react-native";
 import { useAuth, useUser } from "@clerk/expo";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useTransactions } from "@/hooks/useTransaction";
 import createHomeStyles from "@/assets/styles/home.styles";
 import { Ionicons } from "@expo/vector-icons";
 import SummaryConatainer from "@/components/SummaryConatainer";
 import TransactionItem from "@/components/TransactionItem";
+import { router } from "expo-router";
 
 const Index = () => {
-  const { user } = useUser();
+  const { user, isLoaded } = useUser();
   const styles = createHomeStyles();
   const { signOut } = useAuth();
   const { summary, loadData, transactions, deleteTransaction } =
     useTransactions(user?.id);
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
   useEffect(() => {
     loadData();
   }, [loadData]);
+
+  const handleRefresh = async () => {
+    setIsRefreshing(true);
+    await loadData();
+    setIsRefreshing(false);
+  };
+
+  if (!isLoaded && !isRefreshing) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <ActivityIndicator size="large" />
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
@@ -34,7 +58,10 @@ const Index = () => {
             </View>
           </View>
           <View style={styles.headerRight}>
-            <Pressable style={styles.addButton}>
+            <Pressable
+              style={styles.addButton}
+              onPress={() => router.navigate("/Create")}
+            >
               <Ionicons name="add" size={18} color={"#fff"} />
               <Text style={{ color: "white", fontWeight: "bold" }}>Add</Text>
             </Pressable>
@@ -68,6 +95,13 @@ const Index = () => {
           style={styles.transactionsList}
           contentContainerStyle={styles.transactionsListContent}
           keyExtractor={(item) => item.id.toString()}
+          showsVerticalScrollIndicator={false}
+          refreshControl={
+            <RefreshControl
+              refreshing={isRefreshing}
+              onRefresh={handleRefresh}
+            />
+          }
         />
       </View>
     </View>

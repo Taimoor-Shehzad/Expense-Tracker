@@ -54,8 +54,11 @@ const Index = () => {
             />
             <View>
               <Text style={styles.welcomeText}>Welcome,</Text>
-              {/* <Text>{user?.emailAddresses[0]?.emailAddress.split("@")[0]}</Text> */}
-              <Text style={styles.usernameText}>Taimoor Ahmed</Text>
+              <Text style={styles.usernameText}>
+                {user?.emailAddresses[0]?.emailAddress
+                  ?.split("@")[0]
+                  ?.slice(0, 9)}
+              </Text>
             </View>
           </View>
           <View style={styles.headerRight}>

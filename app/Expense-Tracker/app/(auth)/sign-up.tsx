@@ -71,9 +71,12 @@ export default function MainScreen() {
             onChangeText={setCode}
             keyboardType="numeric"
           />
-          <Pressable style={styles.submitButton} onPress={() => handleVerify()}>
+          <TouchableOpacity
+            style={styles.submitButton}
+            onPress={() => handleVerify()}
+          >
             <Text style={styles.buttonText}>Verify Email</Text>
-          </Pressable>
+          </TouchableOpacity>
         </View>
       </>
     );
@@ -118,9 +121,12 @@ export default function MainScreen() {
           secureTextEntry={true}
           onChangeText={setPassword}
         />
-        <Pressable style={styles.submitButton} onPress={() => handleSignUp()}>
+        <TouchableOpacity
+          style={styles.submitButton}
+          onPress={() => handleSignUp()}
+        >
           <Text style={styles.buttonText}>Sign Up</Text>
-        </Pressable>
+        </TouchableOpacity>
         <View nativeID="clerk-captcha" />
         <View style={styles.footerContainer}>
           <Text>Already have an account?</Text>

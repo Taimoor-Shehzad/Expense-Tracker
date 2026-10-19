@@ -233,6 +233,7 @@ const createHomeStyles = () => {
       shadowOpacity: 0.1,
       shadowRadius: 2,
       elevation: 2,
+      marginHorizontal: 4,
     },
 
     emptyStateIcon: {

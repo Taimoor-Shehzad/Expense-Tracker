@@ -2,10 +2,11 @@ import {
   View,
   Text,
   Image,
-  Pressable,
   FlatList,
   RefreshControl,
   ActivityIndicator,
+  TouchableOpacity,
+  Alert,
 } from "react-native";
 import { useAuth, useUser } from "@clerk/expo";
 import React, { useEffect, useState } from "react";
@@ -35,6 +36,19 @@ const Index = () => {
     setIsRefreshing(false);
   };
 
+  const handleLogout = () => {
+    Alert.alert("Logout", "Are you sure you want to logout?", [
+      { text: "cancel", style: "cancel" },
+      {
+        text: "Logout",
+        style: "destructive",
+        onPress: () => {
+          signOut();
+        },
+      },
+    ]);
+  };
+
   if (!isLoaded && !isRefreshing) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
@@ -57,21 +71,21 @@ const Index = () => {
               <Text style={styles.usernameText}>
                 {user?.emailAddresses[0]?.emailAddress
                   ?.split("@")[0]
-                  ?.slice(0, 9)}
+                  ?.slice(0, 7)}
               </Text>
             </View>
           </View>
           <View style={styles.headerRight}>
-            <Pressable
+            <TouchableOpacity
               style={styles.addButton}
               onPress={() => router.navigate("/Create")}
             >
               <Ionicons name="add" size={18} color={"#fff"} />
               <Text style={{ color: "white", fontWeight: "bold" }}>Add</Text>
-            </Pressable>
-            <Pressable style={styles.exitButton} onPress={() => signOut()}>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.exitButton} onPress={handleLogout}>
               <Ionicons name="exit-outline" size={19} color={"#000"} />
-            </Pressable>
+            </TouchableOpacity>
           </View>
         </View>
 

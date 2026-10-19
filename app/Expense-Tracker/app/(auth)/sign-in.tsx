@@ -86,9 +86,12 @@ export default function SignInScreen() {
           secureTextEntry={true}
           onChangeText={setPassword}
         />
-        <Pressable style={styles.submitButton} onPress={() => handleSignIn()}>
+        <TouchableOpacity
+          style={styles.submitButton}
+          onPress={() => handleSignIn()}
+        >
           <Text style={styles.buttonText}>Sign In</Text>
-        </Pressable>
+        </TouchableOpacity>
         <View style={styles.footerContainer}>
           <Text>Don&apos;t have an account?</Text>
 

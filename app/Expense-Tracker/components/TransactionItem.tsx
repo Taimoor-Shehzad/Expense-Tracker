@@ -1,4 +1,4 @@
-import { View, Text, Pressable } from "react-native";
+import { View, Text, Pressable, TouchableOpacity } from "react-native";
 import React, { ComponentProps } from "react";
 import createHomeStyles from "@/assets/styles/home.styles";
 import type { Transaction } from "@/hooks/useTransaction";
@@ -66,12 +66,12 @@ const TransactionItem = ({
             {formatDate(transaction.created_at)}
           </Text>
         </View>
-        <Pressable
+        <TouchableOpacity
           style={styles.transactionDeleteIconContainer}
           onPress={() => deleteTransaction(transaction.id)}
         >
           <Ionicons name="trash" size={18} color={COLORS.expense} />
-        </Pressable>
+        </TouchableOpacity>
       </View>
     </View>
   );

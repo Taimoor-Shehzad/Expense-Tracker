@@ -5,6 +5,7 @@ import {
   Pressable,
   TextInput,
   ActivityIndicator,
+  TouchableOpacity,
 } from "react-native";
 import React, { ComponentProps, useState } from "react";
 import { API_URL } from "@/constants/api";
@@ -90,13 +91,13 @@ const Create = () => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Pressable onPress={() => router.back()}>
+        <TouchableOpacity onPress={() => router.back()}>
           <Ionicons name="arrow-back-outline" size={26} />
-        </Pressable>
+        </TouchableOpacity>
         <Text style={styles.titleText}>New Transaction</Text>
-        <Pressable onPress={() => createTransaction()}>
+        <TouchableOpacity onPress={() => createTransaction()}>
           <Ionicons name="checkmark" size={26} />
-        </Pressable>
+        </TouchableOpacity>
       </View>
       <View style={styles.createTransactionContainer}>
         <View style={styles.typeSelectorContainer}>
@@ -180,7 +181,7 @@ const Create = () => {
           <View style={styles.categoriesWrapper}>
             {CATEGORIES.map((item) => {
               return (
-                <Pressable
+                <TouchableOpacity
                   style={[
                     styles.categoryContainer,
                     category === item.name && {
@@ -205,7 +206,7 @@ const Create = () => {
                   >
                     {item.name}
                   </Text>
-                </Pressable>
+                </TouchableOpacity>
               );
             })}
           </View>
